@@ -11,6 +11,7 @@ const Login = () => (
                 <Link to='join'>Iniciar</Link>
             </QuestionMessage>
             <ThemeLogin>
+                <img src='getec_logo2.jpg' />
                 <FormGroup>
                     <label>Email</label>
                     <input type='email' />

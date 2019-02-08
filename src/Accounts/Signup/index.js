@@ -36,6 +36,7 @@ class Signup extends Component {
                     </QuestionMessage>
                     <BlockMessage><div className='face'>wda</div></BlockMessage>
                     <ThemeLogin onSubmit={this.handleSubmit}>
+                        <img src='getec_logo2.jpg' />
                         <FormGroup>
                             <label>Email</label>
                             <input 

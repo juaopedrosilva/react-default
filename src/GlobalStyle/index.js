@@ -12,12 +12,13 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box; 
     }
     body {
-        background-color: #F6F6F6;
+        background-color: #e9e9e9;
         color: #777; 
         font-family: 'Source Sans Pro', sans-serif;
         /* font-family: 'Roboto Mono', monospace; */
 
-    }
+    } 
+    #printable{ display: none;}
     a { text-decoration: none; } 
 `
 export default GlobalStyle

@@ -26,10 +26,11 @@ export const QuestionMessage = styled.div`
     margin-top: 35px;      
     font-size: 13px;
     a{
-         border:1px solid  #2980b9;
+         border:1px solid  #F2930D;
          padding: 6px 20px; 
          margin-left: 10px;
          font-size: 12px;
+         color: #444;
     text-transform: uppercase;
     letter-spacing: .02rem;
     line-height:22px;
@@ -53,7 +54,7 @@ export const ThemeLogin = styled.form`
         letter-spacing: .02rem;
         padding: 12px 20px;
         font-size: 14px;
-        background-color: #2980b9;
+        background-color: #F2930D;
         border: none;
         color: #FFF;
         line-height: 1.3333333;
@@ -61,6 +62,11 @@ export const ThemeLogin = styled.form`
     button:hover{
         box-shadow: 0 4px 12px 0 rgba(0,0,0,.2);
         transition: 0.5s;
+    }
+    img{
+        width: 300px;
+        height: auto;
+        margin: 0 auto;
     }
 `
 
