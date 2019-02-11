@@ -7,6 +7,7 @@ import swal from 'sweetalert'
 import API from '../../services/Api'
 import Preload from '../Preload';
 import PDF from '../PDF/';
+import ParticipantController from '../../services/controller/ParticipantController';
 
 export default class Report extends Component {
     state = {
@@ -17,9 +18,9 @@ export default class Report extends Component {
         limit: 30,
         clickPDF: false
     }
-    async componentDidMount() {
-        const participant = await API.get(`Crud-com-PHP-MYSQLI/Participant/getAll/?limit=${this.state.limit}`)
-        const state = await API.get('Crud-com-PHP-MYSQLI/State/')
+    async componentDidMount() { 
+        const participant = await ParticipantController.getAll(this.state.limit,this.state.sigla)
+        const state = await API.get('State/')
         this.setState({  
             loaded: false, 
             participant: participant.data,
@@ -29,13 +30,13 @@ export default class Report extends Component {
     handleSelectLimit = async (event) => { 
         this.setState({ loaded: true })
         const limit = event.target.value
-        const { data } = await API.get(`Crud-com-PHP-MYSQLI/Participant/getAll/?limit=${event.target.value}&state=${this.state.sigla}`)
+        const { data } = await ParticipantController.getAll(event.target.value,this.state.sigla) 
         this.setState({ limit: limit, loaded: false,  participant: data });
     }
     handleDataListState = async (event) => {  
         this.setState({ loaded: true })
         const sigla = event.target.value
-        const { data } = await API.get(`Crud-com-PHP-MYSQLI/Participant/getAll/?limit=${this.state.limit}&state=${event.target.value}`)
+        const { data } = await ParticipantController.getAll(this.state.limit,event.target.value)
         this.setState({ sigla: sigla, loaded: false, participant: data });
     }
     showItemParticipant = (participant) => { 
@@ -53,7 +54,28 @@ export default class Report extends Component {
         window.location.href = `http://localhost/Crud-com-PHP-MYSQLI/Participant/generationTxt?limit=${this.state.limit}&state=${this.state.sigla}`
         swal("Seu arquivo foi salvo", "", "success")
     }
-     
+    sendCSV = () => {
+        const csvRow = []
+        const A = [['id','name']]
+        const re = this.state.participant
+        for(var item = 0; item.length; item++){
+            A.push([item,re[item].name])
+        }
+        for(var i=0; i<A.length; ++i){
+            csvRow.push(A[i].join(","))
+        }
+        var csvString = csvRow.join("%OA")
+        var a = document.createElement('a')
+        a.href='data:attachment/csv' + csvString
+        a.target='_Blank'
+        a.download='teste.csv'
+        document.body.appendChild(a)
+        a.click()
+    }
+    sendPrint = () => {
+        this.setState({ clickPDF: true })
+        window.location.reload()
+    }
     render() {
       return <Fragment>
         
@@ -80,8 +102,8 @@ export default class Report extends Component {
                 <div>
                 <ButtonGroup>
                     <Button outline size="sm" onClick={this.sendTXT} color="primary">TXT</Button>
-                    <Button outline size="sm" onClick={() => this.setState({ clickPDF: true })} color="primary">PDF</Button>
-                    <Button outline size="sm" color="primary">CSV</Button>
+                    <Button outline size="sm" onClick={this.sendPrint}  color="primary">IMPRIMIR</Button>
+                    <Button outline size="sm" onClick={this.sendCSV} color="primary">CSV</Button>
                 </ButtonGroup>
                 </div>
             </div>
@@ -102,7 +124,8 @@ export default class Report extends Component {
             {this.state.participant.length < 1 && <div className='notData'> <Alert color="danger">Sem dados no estado <strong>{this.state.sigla}</strong></Alert> </div>}
             {this.state.loaded && <Preload/>}
       </ThemeReport>
-      {this.state.clickPDF && <PDF content={this.state.participant} />}
+        {this.state.clickPDF && <PDF content={this.state.participant} />}
+
       </Fragment>
     }
 }
