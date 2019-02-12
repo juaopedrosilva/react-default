@@ -21,6 +21,7 @@ export default class Report extends Component {
     async componentDidMount() { 
         const participant = await ParticipantController.getAll(this.state.limit,this.state.sigla)
         const state = await API.get('State/')
+        console.table(participant.data)
         this.setState({  
             loaded: false, 
             participant: participant.data,
@@ -55,26 +56,16 @@ export default class Report extends Component {
         swal("Seu arquivo foi salvo", "", "success")
     }
     sendCSV = () => {
-        const csvRow = []
-        const A = [['id','name']]
-        const re = this.state.participant
-        for(var item = 0; item.length; item++){
-            A.push([item,re[item].name])
-        }
-        for(var i=0; i<A.length; ++i){
-            csvRow.push(A[i].join(","))
-        }
-        var csvString = csvRow.join("%OA")
-        var a = document.createElement('a')
-        a.href='data:attachment/csv' + csvString
-        a.target='_Blank'
-        a.download='teste.csv'
-        document.body.appendChild(a)
-        a.click()
+        window.location.href = `http://localhost/Crud-com-PHP-MYSQLI/Participant/generationCsv?limit=${this.state.limit}&state=${this.state.sigla}`
+        swal("Seu arquivo foi salvo", "", "success")
     }
     sendPrint = () => {
         this.setState({ clickPDF: true })
         window.location.reload()
+    }
+    sendPdf = () => {
+        window.location.href = `http://localhost/Crud-com-PHP-MYSQLI/Participant/generationPdf?limit=${this.state.limit}&state=${this.state.sigla}`
+        swal("Seu arquivo foi salvo", "", "success")
     }
     render() {
       return <Fragment>
@@ -104,6 +95,7 @@ export default class Report extends Component {
                     <Button outline size="sm" onClick={this.sendTXT} color="primary">TXT</Button>
                     <Button outline size="sm" onClick={this.sendPrint}  color="primary">IMPRIMIR</Button>
                     <Button outline size="sm" onClick={this.sendCSV} color="primary">CSV</Button>
+                    <Button outline size="sm" onClick={this.sendPdf} color="primary">PDF</Button>
                 </ButtonGroup>
                 </div>
             </div>
