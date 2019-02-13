@@ -9,6 +9,8 @@ import Preload from '../Preload';
 import PDF from '../PDF/';
 import ParticipantController from '../../services/controller/ParticipantController';
 
+const LINK = 'http://localhost/Crud-com-PHP-MYSQLI/'
+
 export default class Report extends Component {
     state = {
         loaded: true,
@@ -51,12 +53,13 @@ export default class Report extends Component {
             </tr>
         )
     }
+    
     sendTXT = () => {
-        window.location.href = `http://localhost/Crud-com-PHP-MYSQLI/Participant/generationTxt?limit=${this.state.limit}&state=${this.state.sigla}`
+        window.location.href = `${LINK}Participant/generationTxt?limit=${this.state.limit}&state=${this.state.sigla}`
         swal("Seu arquivo foi salvo", "", "success")
     }
     sendCSV = () => {
-        window.location.href = `http://localhost/Crud-com-PHP-MYSQLI/Participant/generationCsv?limit=${this.state.limit}&state=${this.state.sigla}`
+        window.location.href = `${LINK}Participant/generationCsv?limit=${this.state.limit}&state=${this.state.sigla}`
         swal("Seu arquivo foi salvo", "", "success")
     }
     sendPrint = () => {
@@ -64,7 +67,7 @@ export default class Report extends Component {
         window.location.reload()
     }
     sendPdf = () => {
-        window.location.href = `http://localhost/Crud-com-PHP-MYSQLI/Participant/generationPdf?limit=${this.state.limit}&state=${this.state.sigla}`
+        window.location.href = `${LINK}Participant/generationPdf?limit=${this.state.limit}&state=${this.state.sigla}`
         swal("Seu arquivo foi salvo", "", "success")
     }
     render() {

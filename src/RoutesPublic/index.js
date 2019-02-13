@@ -32,8 +32,8 @@ const Routes = () => (
         {/* <PrivateRoute exact path="/" component={App} /> */}
         <Route exact path="/" component={Login} /> 
         <Route exact path="/join" component={Signup} /> 
-        <Route exact path="/admin" component={Dashboard} /> 
-        <Route exact path="/admin/relatorio" component={Report} /> 
+        <PrivateRoute exact path="/admin" component={Dashboard} /> 
+        <PrivateRoute exact path="/admin/relatorio" component={Report} /> 
         <Route component={() => <h1>404</h1>} />
       </Switch>
     </BrowserRouter>

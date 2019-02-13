@@ -4,8 +4,10 @@ import Container from './Container'
 
 const Report = () => {
   return  <Fragment>
-    <Menu/> 
+    <Menu>
     <Container/>
+    </Menu>
+     
   </Fragment>
 } 
 export default Report 

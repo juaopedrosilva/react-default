@@ -3,8 +3,9 @@ import Menu from '../Menu';
 
 const Dashboard = () => {
     return <Fragment>
-        <Menu/>
+        <Menu>
         <h1>Dashboard</h1>
+        </Menu>
     </Fragment>
 }
 export default Dashboard
