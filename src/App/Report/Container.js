@@ -72,11 +72,11 @@ export default class Report extends Component {
     }
     render() {
       return <Fragment>
-        
+{/*         
         <Breadcrumb> 
             <BreadcrumbItem active>Relatório</BreadcrumbItem>
             <BreadcrumbItem active>Participante </BreadcrumbItem>
-        </Breadcrumb>
+        </Breadcrumb> */}
         <ThemeReport> 
             <div className='limit'>
                 <div>

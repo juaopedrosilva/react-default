@@ -4,13 +4,20 @@ export const ThemeReport = styled.main`
     position: relative;
     margin: 0 auto; 
     width: 98%;
-    margin-top: 2vw;
-    background-color: #FFF;
-    border-radius: 5px; 
+    margin-top: 2vw; 
     /* height: 24vh; */
     border: 1px solid rgba(0,0,0,.0625);
     /* display: flex; */
     padding: 16px;
+
+    border-radius: 6px;
+    box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+    background-color: #FFFFFF;
+    color: #252422;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    
     div.notData{
         width: 30%;
         display: flex;

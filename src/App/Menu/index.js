@@ -34,7 +34,7 @@ const Menu = (props) => {
         </div>
         <div id="page-content-wrapper">
 
-          <nav class="bg-gradient-getec navbar navbar-expand-lg  border-bottom">
+          <nav class="bg-gradient-getec2 navbar navbar-expand-lg  border-bottom">
             {/* <button class="btn btn-primary" onClick={menuToggle}>Toggle Menu</button> */}
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
